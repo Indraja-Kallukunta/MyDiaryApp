@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.twg.Springboot.Entities.User3;
+import com.twg.Springboot.Entities.Users;
 
-public interface UserInterface extends JpaRepository<User3, Long> {
-	 User3 findByUsername(String name);
+public interface UserInterface extends JpaRepository<Users, Long> {
+	 Users findByUsername(String name);
      
 }
