@@ -3,7 +3,7 @@ package com.twg.Springboot.Entities;
 import jakarta.persistence.*;
 
 @Entity
-public class User3 {
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
