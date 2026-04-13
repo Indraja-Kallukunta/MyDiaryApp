@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.twg.Springboot.Entities.EntriesOfUser;
-import com.twg.Springboot.Entities.User3;
+import com.twg.Springboot.Entities.Users;
 import com.twg.Springboot.Repository.EntriesInterface;
 
 @Service
