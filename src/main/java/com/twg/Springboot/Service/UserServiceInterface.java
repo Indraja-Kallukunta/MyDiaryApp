@@ -2,16 +2,16 @@ package com.twg.Springboot.Service;
 
 import java.util.List;
 
-import com.twg.Springboot.Entities.User3;
+import com.twg.Springboot.Entities.Users;
 
 public interface UserServiceInterface {
-	public User3 saveUser(User3 user);
-	public User3 updateUser(User3 user);
-	public void deleteUser(User3 user);
-	public User3 getUserById(long id);
-	public List<User3> findAllUsers();
+	public Users saveUser(Users user);
+	public Users updateUser(Users user);
+	public void deleteUser(Users user);
+	public Users getUserById(long id);
+	public List<Users> findAllUsers();
 	
-	public User3 findByUsername(String name);
+	public Users findByUsername(String name);
 	
 
 }
