@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.twg.Springboot.Entities.EntriesOfUser;
-import com.twg.Springboot.Entities.User3;
+import com.twg.Springboot.Entities.Users;
 import com.twg.Springboot.Service.EntriesServiceInterface;
 import com.twg.Springboot.Service.UserServiceInterface;
 
@@ -42,14 +42,14 @@ public class ControllerClass {
 	}
 	
 	@PostMapping("/registeruser")
-	public String registeruser(@ModelAttribute("User3") User3 user) {
-		 User3 user1 = userServiceInterface.saveUser(user);
+	public String registeruser(@ModelAttribute("users") Users user) {
+		 Users user1 = userServiceInterface.saveUser(user);
 		return "registersuccess";	
 	}
 	
 	@PostMapping("/loginuser")
-	public String loginuser(@ModelAttribute("User3") User3 user,Model model) {
-		 User3 user2 = userServiceInterface.findByUsername(user.getUsername());
+	public String loginuser(@ModelAttribute("users") Users user,Model model) {
+		 Users user2 = userServiceInterface.findByUsername(user.getUsername());
 		 session.setAttribute("users",user2);
 		 if(user2 != null && (user.getPassword().equals(user2.getPassword()))) {
 			 model.addAttribute("user", user);
@@ -60,7 +60,7 @@ public class ControllerClass {
 				 e.printStackTrace();
 			 }
 			 model.addAttribute("entrieslist",entries);
-			 User3 user1 = (User3) session.getAttribute("users");
+			 Users user1 = (User3) session.getAttribute("users");
 			 if(user1!=null) {
 			 return "Userhomepage";
 			 }
@@ -71,7 +71,7 @@ public class ControllerClass {
 	
 	@GetMapping("/addEntry")
 	public String addentry() {
-		User3 user = (User3) session.getAttribute("users");
+		Users user = (Users) session.getAttribute("users");
 		String viewname = "addEntry";
 	if(user == null) {
 		viewname="loginpage";
@@ -82,7 +82,7 @@ public class ControllerClass {
 	@PostMapping("/saveentry")
 	public String addentrypro(@ModelAttribute("entriesOfUser") EntriesOfUser entriesOfUser,Model model) {
 		EntriesOfUser entriesOfUser1 = entriesServiceInterface.saveEntry(entriesOfUser);
-		 User3 user = (User3) session.getAttribute("users");
+		 Users user = (Users) session.getAttribute("users");
 			List<EntriesOfUser> entries = null;
 			try {
 				entries = entriesServiceInterface.findByUserid(user.getId());
@@ -99,7 +99,7 @@ public class ControllerClass {
 	
 	@GetMapping("/viewEntry")
 	public String viewentry(@RequestParam("id") long id,Model model) {
-		 User3 user = (User3) session.getAttribute("users");
+		 Users user = (Users) session.getAttribute("users");
 		EntriesOfUser entriesOfUser1 = null;
 		try {
 		      entriesOfUser1 = entriesServiceInterface.getById(id) ;
@@ -114,7 +114,7 @@ public class ControllerClass {
 	}
 	@GetMapping("/userhome")
 	public String userhome(Model model) {
-		 User3 user = (User3) session.getAttribute("users");
+		 Users user = (Users) session.getAttribute("users");
 		List<EntriesOfUser> entries = null;
 		try {
 			entries = entriesServiceInterface.findByUserid(user.getId());
@@ -131,7 +131,7 @@ public class ControllerClass {
 	
 	@GetMapping("/updateEntry")
 	public String updateeentry(@RequestParam("id") long id,Model model) {
-		User3 user = (User3) session.getAttribute("users");
+		Users user = (Users) session.getAttribute("users");
 		EntriesOfUser entriesOfUser1 = null;
 		try {
 		      entriesOfUser1 = entriesServiceInterface.getById(id) ;
@@ -147,7 +147,7 @@ public class ControllerClass {
 	@PostMapping("/updateEntryProcess")
 	public String updateprocess(@ModelAttribute("entriesOfUser") EntriesOfUser entry,Model model) {
 		EntriesOfUser entriesOfUser = entriesServiceInterface.updateEntry(entry);
-		User3 user = (User3) session.getAttribute("users");
+		Users user = (Users) session.getAttribute("users");
 		List<EntriesOfUser> entries = null;
 		try {
 			entries = entriesServiceInterface.findByUserid(user.getId());
@@ -172,7 +172,7 @@ public class ControllerClass {
 			e.printStackTrace();
 		}
 		entriesServiceInterface.deleteEntry(entry);
-		User3 user = (User3) session.getAttribute("users");
+		Users user = (Users) session.getAttribute("users");
 		List<EntriesOfUser> entries = null;
 		try {
 			entries = entriesServiceInterface.findByUserid(user.getId());
